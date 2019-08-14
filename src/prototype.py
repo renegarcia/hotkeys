@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from Xlib import X
 from Xlib.display import Display
 from Xlib.keysymdef import xf86
@@ -43,7 +45,7 @@ def bind_actions(dpy, window, action_dct):
         keycode = dpy.keysym_to_keycode(keysym)
         window.grab_key(keycode, X.AnyModifier, False, X.GrabModeAsync, X.GrabModeAsync)        
 
-        
+
 def process(dpy, actions, evt):
     if evt.type == X.KeyRelease:
         keycode = evt.detail
@@ -69,7 +71,7 @@ def setup() -> Display:
 
 def loop(dpy: Display, actions: dict):
     try:
-        for _ in range(5):
+        while True:
             evt = dpy.next_event()
             process(dpy, actions, evt)
     finally:
@@ -78,7 +80,7 @@ def loop(dpy: Display, actions: dict):
 
 def main(argv):
     dpy = setup()
-    loop(dpy)
+    loop(dpy, actions)
     return 0
 
 
