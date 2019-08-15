@@ -7,10 +7,12 @@ from subprocess import run
 
 
 actions = {
-    xf86.XK_XF86_AudioPlay: ['playerctl', 'play-pause'],
-    xf86.XK_XF86_AudioStop: ['playerctl', 'stop'],
-    xf86.XK_XF86_AudioNext: ['playerctl', 'next'],
-    xf86.XK_XF86_AudioPrev: ['playerctl', 'previous']
+    xf86.XK_XF86_AudioPlay: ['mocp', '--toggle-play'],
+    xf86.XK_XF86_AudioStop: ['mocp', '--stop'],
+    xf86.XK_XF86_AudioNext: ['mocp', '--next'],
+    xf86.XK_XF86_AudioPrev: ['mocp', '--previous'],
+    xf86.XK_XF86_AudioRaiseVolume: ['amixer', '-q', 'sset', 'Master', '3%+'],
+    xf86.XK_XF86_AudioLowerVolume: ['amixer', '-q', 'sset', 'Master', '3%-']
 }
 
 
